@@ -1,20 +1,42 @@
-// ProgrammingCPP-CourseWork-22321005.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include <cmath>
 
-#include <iostream>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //Task: Calculate formula: 𝑓=∑(−1)(𝑘+1)𝑛 𝑘=1 𝑥(2𝑘−1) (2𝑘−1)!
+
+    int n;
+    double x, sum = 0.0;
+
+    cout << "Calculate f(x)\n";
+    cout << "Enter the value of x: ";
+    cin >> x;
+
+    cout << "Enter the value of n: ";
+    cin >> n;
+
+    // 'Term' stores the current term of series, while 'sign' keeps track of the sign of each term, 
+    // alternating between positive and negative
+    double term = x;
+    double sign = -1.0;
+
+    // Calculate each term in the series and adding it to the sum
+    for (int k = 1; k <= n; k++)
+    {
+        sum += sign * term;
+
+        // This expression updates the value of term for each iteration, 
+        // using a running product that accounts for the odd powers of x and 
+        // the factorial values in the denominator.
+        term *= (x * x) / ((2 * k) * (2 * k + 1));
+
+        // Flip sign for each term in the series
+        sign *= -1.0;
+    }
+
+    cout << "The value of the sum up to " << n << " terms is : " << sum << endl;
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
